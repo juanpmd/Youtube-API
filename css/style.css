@@ -1,0 +1,163 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  font-size: 18px;
+  font-family:  Helvetica, sans-serif;
+}
+/* ##### main ##### */
+.main {
+  display: block;
+  background: #ffffff;
+  height: 80px;
+  width: 100%;
+}
+/* ##### main->main-eft ##### */
+.main-left {
+  float: left;
+  width: 500px;
+}
+/* ##### main->main-left->main-logo ##### */
+.main-logo {
+   background: url(../img/logo.png) 0 0 no-repeat;
+   height: 40px;
+   width: 100px;
+   display: inline-block;
+   margin: 20px 30px;
+   padding-right: 20px;
+   border-right: 1px solid #d5d4d4;
+ }
+/* ##### main->main-left->menu-search ##### */
+.menu-search {
+  width: 250px;
+  height: 80px;
+  border-radius: 10px 10px 0 0;
+  display: inline-block;
+  position: absolute;
+}
+/* ##### main->main-left->menu-search->boton ##### */
+#boton {
+  display: inline-block;
+  background: url(../img/lupa.png) 0 0 no-repeat;
+  height: 20px;
+  width: 20px;
+  margin: 30px 0;
+  position: absolute;
+  cursor: pointer;
+}
+/* ##### main->main-left->menu-search->search ##### */
+#search {
+  display: inline-block;
+  position: absolute;
+  left: 30px;
+  border: none;
+  outline: none;
+  margin: 29.5px 0;
+  color: #a8a8a8;
+}
+/* ##### main->menu-display-type ##### */
+.menu-display-type {
+  width: 65px;
+  height: 40px;
+  margin: 20px 0;
+  position: absolute;
+  display: inline-block;
+  right: 0;
+  border-left: 1px solid #d5d4d4;
+  padding: 0 35px ;
+}
+/* ##### main->menu-display-type->boton-list ##### */
+#boton-list {
+  display: inline-block;
+  background-repeat: ;
+  height: 25px;
+  width: 25px;
+  margin: 7.5px 0;
+  padding-right: 5px;
+  cursor: pointer;
+}
+#boton-list:hover {
+  background: url(../img/list-logo-active.png) no-repeat;
+}
+.boton-list-class {
+  background: url("../img/list-logo.png") no-repeat;
+}
+.boton-list-class2 {
+  background: url("../img/list-logo-active.png") no-repeat;
+}
+/* ##### main->menu-display-type->boton-image ##### */
+#boton-image {
+  display: inline-block;
+  background: url(../img/image-logo.png) no-repeat;
+  padding-right: 5px;
+  height: 25px;
+  width: 25px;
+  margin: 7.5px 0;
+  cursor: pointer;
+}
+#boton-image:hover {
+  background: url(../img/image-logo-active.png) no-repeat;
+}
+/* ##### results ##### */
+.results {
+  display: block;
+  position: absolute;
+  height: 0;
+  width: 100%;
+  background: #f5f5f5;
+  border-top: 1px solid #e9e9e9;
+}
+/* ##### results->menu-videos->video-lista ##### */
+.video-lista {
+  display: block;
+  float: left;
+  width: 100%;
+  height: 70px;
+  border-bottom: 1px solid #d5d4d4;
+}
+/* ##### results->menu-videos->video-lista->play ##### */
+.play {
+  background: url(../img/play.png) no-repeat;
+  display: inline-block;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  margin: 20px;
+  position: absolute;
+}
+/* ##### results->menu-videos->video-lista->info-video ##### */
+.info-video {
+  display: inline-block;
+  position: absolute;
+  height: 50px;
+  width: 600px;
+  left: 90px;
+  margin: 10px;
+}
+/* ##### results->menu-videos->video-lista->info-video->nombre-cancion ##### */
+.nombre-cancion {
+  font-weight: bold;
+  font-size: 15px;
+  display: block;
+  position: absolute;
+  color: #1782be;
+  padding-top: 5px;
+  overflow: hidden;
+}
+/* ##### results->menu-videos->video-lista->info-video->descripcion-cancion ##### */
+.descripcion-cancion {
+  display: block;
+  position: absolute;
+  padding-top: 25px;
+  font-size: 15px;
+}
+/* ##### results->menu-videos->video-lista->info-video->descripcion-cancion->span ##### */
+.descripcion-cancion span {
+  font-weight: normal;
+  font-style: italic;
+  font-size: 15px;
+}
+
+/* ##### EXTRA ##### */
+::-webkit-input-placeholder {
+   color: #d5d4d4;
+}
