@@ -227,3 +227,17 @@
   height: 100%;
   position: relative;
 }
+
+#regresar {
+  height: 30px;
+  width: 40px;
+  margin: 20px;
+  background: url(../img/regresar.png) 0 0 no-repeat;
+  display: inline-block;
+  position: absolute;
+  cursor: pointer;
+}
+
+#regresar:hover {
+  background: url(../img/regresar-hover.png) 0 0 no-repeat;
+}

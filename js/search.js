@@ -16,6 +16,10 @@ function onYouTubeApiLoad() {
 
     $("#boton").click(function(){
       $(".results").css("height", sizebackground);
+      //Estas 2 lineas es por si estas en el reproductor, si buscas otro video se abre la lista con la nueva busqueda
+      $(".reproductor").fadeOut("slow").addClass("hidden");
+      $(".results").fadeIn("slow").removeClass("hidden");
+      $(".video").remove();
       search(); //Aqui hace la busqueda
     });
 
@@ -23,6 +27,10 @@ function onYouTubeApiLoad() {
     $("#search").keypress(function (e) {
       if (e.which == 13) {
         $(".results").css("height", sizebackground);
+        //Estas 2 lineas es por si estas en el reproductor, si buscas otro video se abre la lista con la nueva busqueda
+        $(".reproductor").fadeOut("slow").addClass("hidden");
+        $(".results").fadeIn("slow").removeClass("hidden");
+        $(".video").remove();
         search(); //Aqui hace la busqueda
       }
     });
@@ -36,32 +44,45 @@ function PestañaVideo(){
 
   $(document).on('click','.video-lista', function(){
 
-          //Esto es para redimensionar el bloque del video dependiendo del tamaño de pantalla
-          var fondonegro =parseInt($(".reproductor").css("width"), 10);
-          fondonegro = fondonegro * 0.70;
-          var alturafondonegro = fondonegro / 2.225;
-          $(".fondo-negro").css("height", alturafondonegro);
-          var alturareproducir = alturafondonegro + 146;
-          $(".menu-reproducir").css("height", alturareproducir);
+    //Esto es para redimensionar el bloque del video dependiendo del tamaño de pantalla
+    var fondonegro =parseInt($(".reproductor").css("width"), 10);
+    fondonegro = fondonegro * 0.70;
+    var alturafondonegro = fondonegro / 2.225;
+    $(".fondo-negro").css("height", alturafondonegro);
+    var alturareproducir = alturafondonegro + 146;
+    $(".menu-reproducir").css("height", alturareproducir);
 
 
+    //Aqui hace las modificaciones necesarias para arreglar la pantalla de reproduccion
+    var idvid = $(this).find(".id-video-lista").text();
+    var nomvid = $(this).find(".nombre-cancion").text();
+    //console.log("id: " + idvid);
+    //console.log("nombre: " + nomvid);
+    $(".reproductor").fadeIn("slow").toggleClass("hidden");
+    $(".results").fadeOut("slow").toggleClass("hidden");
+
+    var ivideo = '<iframe class="video" src="http://www.youtube.com/embed/%link%?&showinfo=0" frameborder="0" allowfullscreen></iframe>';
+    ivideo = ivideo.replace("%link%", idvid);
+    $(".bloque-video").append(ivideo);
 
 
-          //Aqui hace las modificaciones necesarias para arreglar la pantalla de reproduccion
-          var idvid = $(this).find(".id-video-lista").text();
-          var nomvid = $(this).find(".nombre-cancion").text();
-          //console.log("id: " + idvid);
-          //console.log("nombre: " + nomvid);
-          $(".reproductor").fadeIn("slow").toggleClass("hidden");
-          $(".results").fadeOut("slow").toggleClass("hidden");
+    //Para organizar el tamaño del fondo
+    var sizebackground =parseInt($(".menu-reproducir").css("height"), 10);
+    var tamanomainresults =parseInt($(".main-results").css("height"), 10);
+    console.log(sizebackground);
+    console.log(tamanomainresults);
 
-          var ivideo = '<iframe class="video" src="http://www.youtube.com/embed/%link%?&showinfo=0" frameborder="0" allowfullscreen></iframe>';
-          ivideo = ivideo.replace("%link%", idvid);
-          $(".bloque-video").append(ivideo);
+    if (sizebackground < tamanomainresults){
+      $(".reproductor").css("height", tamanomainresults);
+    }
+    else {
+      $(".reproductor").css("height", sizebackground + 50);
+    }
 
-      });
+  });
 
-  $(".nav-regresar").click(function() {
+  //Este es para volver cuando se de click en el boton regresar
+  $("#regresar").click(function() {
     $(".reproductor").fadeOut("slow").toggleClass("hidden");
     $(".results").fadeIn("slow").toggleClass("hidden");
     $(".video").remove();
@@ -128,7 +149,12 @@ function onSearchResponse(response) {
 
     //Esto es para organizar el tamaño del fondo gris (que se organice con la cantidad de resultados de la busqueda)
     sizebackground =parseInt($(".results").css("height"), 10);
-    $(".main-results").css("height", sizebackground + 50);
+    tamanomainresults =parseInt($(".main-results").css("height"), 10);
+    //Esto es para que revise cuando hace una busqueda el tamano de fondo y asi lo reorganiza
+    if (sizebackground < tamanomainresults){}
+    else {
+      $(".main-results").css("height", sizebackground + 50);
+    }
 }
 // ##################################################################################
 function TamanoModificado(titulo){
