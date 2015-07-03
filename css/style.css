@@ -10,7 +10,7 @@
   background: #ffffff;
   height: 80px;
   width: 100%;
-  border-bottom: 1px solid #e9e9e9;
+  border-bottom: 3px solid #e9e9e9;
 }
 /* ##### main->main-eft ##### */
 .main-left {
@@ -159,6 +159,10 @@
   left: 90px;
   margin: 10px;
 }
+/* ##### results->menu-videos->video-lista->id-video-lista ##### */
+.id-video-lista {
+  display: none;
+}
 /* ##### results->menu-videos->video-lista->info-video->nombre-cancion ##### */
 .nombre-cancion {
   font-weight: bold;
@@ -182,8 +186,44 @@
   font-style: italic;
   font-size: 15px;
 }
-
 /* ##### EXTRA ##### */
 ::-webkit-input-placeholder {
    color: #d5d4d4;
+}
+
+.reproductor {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.menu-reproducir {
+  width: 70%;
+  height: 100%;
+  background: white;
+  margin: 15px auto;
+  border: 1px solid #e9e9e9;
+}
+
+.nav-regresar {
+  width: 100%;
+  height: 70px;
+  border-bottom: 3px solid #e9e9e9;
+}
+
+.fondo-negro {
+  width: 100%;
+  height: 0;
+  background: #0f0f0f;
+}
+.bloque-video {
+  height: 100%;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }

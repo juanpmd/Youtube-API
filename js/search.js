@@ -11,6 +11,9 @@ function onYouTubeApiLoad() {
     //Agregue esta variable para que cada vez que unda el click el tamaño del fondo se resetee
     var sizebackground =parseInt($(".results").css("height"), 10);
 
+    //Esta funcion es para ajustar que al inicio no se cree un scrool por exceso de fondo (modifica el tamaño del fondo para que quepa perfectamente)
+    AjustarPantalla();
+
     $("#boton").click(function(){
       $(".results").css("height", sizebackground);
       search(); //Aqui hace la busqueda
@@ -24,6 +27,45 @@ function onYouTubeApiLoad() {
       }
     });
 
+    //Esta funcion es para cuando de click a un elemento de la lista, el abra su video
+    PestañaVideo();
+
+}
+// ##################################################################################
+function PestañaVideo(){
+
+  $(document).on('click','.video-lista', function(){
+
+          //Esto es para redimensionar el bloque del video dependiendo del tamaño de pantalla
+          var fondonegro =parseInt($(".reproductor").css("width"), 10);
+          fondonegro = fondonegro * 0.70;
+          var alturafondonegro = fondonegro / 2.225;
+          $(".fondo-negro").css("height", alturafondonegro);
+          var alturareproducir = alturafondonegro + 146;
+          $(".menu-reproducir").css("height", alturareproducir);
+
+
+
+
+          //Aqui hace las modificaciones necesarias para arreglar la pantalla de reproduccion
+          var idvid = $(this).find(".id-video-lista").text();
+          var nomvid = $(this).find(".nombre-cancion").text();
+          //console.log("id: " + idvid);
+          //console.log("nombre: " + nomvid);
+          $(".reproductor").fadeIn("slow").toggleClass("hidden");
+          $(".results").fadeOut("slow").toggleClass("hidden");
+
+          var ivideo = '<iframe class="video" src="http://www.youtube.com/embed/%link%?&showinfo=0" frameborder="0" allowfullscreen></iframe>';
+          ivideo = ivideo.replace("%link%", idvid);
+          $(".bloque-video").append(ivideo);
+
+      });
+
+  $(".nav-regresar").click(function() {
+    $(".reproductor").fadeOut("slow").toggleClass("hidden");
+    $(".results").fadeIn("slow").toggleClass("hidden");
+    $(".video").remove();
+  });
 }
 // ##################################################################################
 function search() {
@@ -65,9 +107,10 @@ function onSearchResponse(response) {
         var sizebackground =parseInt($(".results").css("height"), 10);
         $(".results").css("height", sizebackground + 71);
 
-        var vistaboton = '<div class="video-lista"><div id="%id-video%" class="video-image"></div><div class="play"></div><div class="info-video"><p class="nombre-cancion">%nombre-cancion%</p><p class="descripcion-cancion"><span>de </span>%nombre-artista%</p></div></div>';
+        var vistaboton = '<div class="video-lista"><div id="%id-video%" class="video-image"></div><div class="play"></div><div class="info-video"><p class="nombre-cancion">%nombre-cancion%</p> <p class="id-video-lista">%id-video-lista%</p><p class="descripcion-cancion"><span>de </span>%nombre-artista%</p></div></div>';
         vistaboton = vistaboton.replace("%nombre-cancion%", titulofinal);
         vistaboton = vistaboton.replace("%nombre-artista%", results[result].snippet.channelTitle);
+        vistaboton = vistaboton.replace("%id-video-lista%", results[result].id.videoId);
 
         var strnum = String(temporal);
         strnum = "video" + strnum;
@@ -103,3 +146,10 @@ function TamanoModificado(titulo){
   final = final + " ...";
   return final;
 }
+// ##################################################################################
+function AjustarPantalla() {
+  var tamano = parseInt($(".main-results").css("height"), 10);
+  tamano = tamano - 83;
+  $(".main-results").css("height", tamano);
+}
+// ##################################################################################
